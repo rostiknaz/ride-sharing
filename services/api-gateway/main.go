@@ -16,7 +16,10 @@ func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("Hello from API Gateway"))
+		_, err := w.Write([]byte("Hello from API Gateway"))
+		if err != nil {
+			return
+		}
 	})
 
 	http.ListenAndServe(httpAddr, nil)
